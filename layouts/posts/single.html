@@ -5,9 +5,9 @@
 
     {{- $toc := $params.toc -}}
     {{- if eq $toc true -}}
-    {{- $toc = .Site.Params.page.toc | default dict -}}
-    {{- else if eq $toc false -}}
-    {{- $toc = dict "enable" false -}}
+        {{- $toc = .Site.Params.page.toc | default dict -}}
+    {{- else -}}
+        {{- $toc = dict "enable" false -}}
     {{- end -}}
     
     
@@ -33,7 +33,7 @@
         {{- else -}}
             <script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script>
         {{- end -}}
-    {{- else if eq $toc.enable false -}}
+    {{- else -}}
         <script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script>
     {{- end -}}
 
