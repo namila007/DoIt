@@ -1,7 +1,7 @@
 ---
 weight: 1
 title: "主题文档 - 基本概念"
-date: 2020-03-06T21:40:32+08:00
+date: 2020-03-03T21:40:32+08:00
 lastmod: 2020-03-06T21:40:32+08:00
 draft: false
 authors: ["Dillon", "PCloud"]
@@ -11,7 +11,7 @@ featuredImage: "featured-image.webp"
 tags: ["installation", "configuration"]
 categories: ["documentation"]
 series: ["getting-start"]
-
+series_weight: 1
 lightgallery: true
 
 toc:
@@ -22,7 +22,7 @@ toc:
 
 <!--more-->
 
-## 1 准备
+## 准备
 
 由于 Hugo 提供的便利性, [Hugo](https://gohugo.io/) 本身是这个主题唯一的依赖.
 
@@ -36,11 +36,11 @@ toc:
 由于这个主题的一些特性需要将 :(fab fa-sass fa-fw): SCSS 转换为 :(fab fa-css3 fa-fw): CSS, 推荐使用 Hugo **extended** 版本来获得更好的使用体验.
 {{< /admonition >}}
 
-## 2 安装
+## 安装
 
 以下步骤可帮助你初始化新网站. 如果你根本不了解 Hugo, 我们强烈建议你按照此 [快速入门文档](https://gohugo.io/getting-started/quick-start/) 进一步了解它.
 
-### 2.1 创建你的项目
+### 创建你的项目
 
 Hugo 提供了一个 `new` 命令来创建一个新的网站:
 
@@ -49,7 +49,7 @@ hugo new site my_website
 cd my_website
 ```
 
-### 2.2 安装主题
+### 安装主题
 
 **DoIt** 主题的仓库是: [https://github.com/HEIGE-PCloud/DoIt](https://github.com/HEIGE-PCloud/DoIt).
 
@@ -68,7 +68,7 @@ git init
 git submodule add https://github.com/HEIGE-PCloud/DoIt.git themes/DoIt
 ```
 
-### 2.3 基础配置 {#basic-configuration}
+### 基础配置 {#basic-configuration}
 
 以下是 DoIt 主题的基本配置:
 
@@ -131,7 +131,7 @@ theme = "DoIt"
 在构建网站时, 你可以使用 `--theme` 选项设置主题. 但是, 我建议你修改配置文件 (**config.toml**) 将本主题设置为默认主题.
 {{< /admonition >}}
 
-### 2.4 创建你的第一篇文章
+### 创建你的第一篇文章
 
 以下是创建第一篇文章的方法:
 
@@ -145,7 +145,7 @@ hugo new posts/first_post.md
 默认情况下, 所有文章和页面均作为草稿创建. 如果想要渲染这些页面, 请从元数据中删除属性 `draft: true`, 设置属性 `draft: false` 或者为 `hugo` 命令添加 `-D`/`--buildDrafts` 参数.
 {{< /admonition >}}
 
-### 2.5 在本地启动网站
+### 在本地启动网站
 
 使用以下命令启动网站:
 
@@ -170,7 +170,7 @@ hugo serve --disableFastRender
 ```
 {{< /admonition >}}
 
-### 2.6 构建网站
+### 构建网站
 
 当你准备好部署你的网站时, 运行以下命令:
 
@@ -185,9 +185,9 @@ hugo
 或者, 您可以使用 [AWS Amplify](https://gohugo.io/hosting-and-deployment/hosting-on-aws-amplify/), [Github pages](https://gohugo.io/hosting-and-deployment/hosting-on-github/), [Render](https://gohugo.io/hosting-and-deployment/hosting-on-render/) 以及更多...
 {{< /admonition >}}
 
-## 3 配置
+## 配置
 
-### 3.1 网站配置 {#site-configuration}
+### 网站配置 {#site-configuration}
 
 除了 [Hugo 全局配置](https://gohugo.io/overview/configuration/) 和 [菜单配置](#basic-configuration) 之外, **DoIt** 主题还允许您在网站配置中定义以下参数 (这是一个示例 `config.toml`, 其内容为默认值).
 
@@ -214,8 +214,10 @@ hugo
   dateFormat = "2006-01-02"
   # 网站图片, 用于 Open Graph 和 Twitter Cards
   images = ["/logo.png"]
-  # {{< version 0.2.11 >}} 开启PWA支持
+  # {{< version 0.2.11 >}} 开启 PWA 支持
   enablePWA = false
+  # {{< version 0.2.14 >}} 版权信息
+  license = '<a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>'
   # {{< version 0.2.0 >}} 应用图标配置
   [params.app]
     # 当添加到 iOS 主屏幕或者 Android 启动器时的标题, 覆盖默认标题
@@ -291,6 +293,9 @@ hugo
     custom = ''
     # {{< version 0.2.0 >}} 是否显示 Hugo 和主题信息
     hugo = true
+    # {{< version 0.2.14 >}} 托管服务信息 (支持 HTML 格式)
+    # <a title="Github Pages" href="https://docs.github.com/en/pages/" target="_blank" rel="noopener noreffer">GitHub Pages</a>
+    hostedOn = '' 
     # {{< version 0.2.0 >}} 是否显示版权信息
     copyright = true
     # {{< version 0.2.0 >}} 是否显示作者
@@ -310,6 +315,12 @@ hugo
     dateFormat = "01-02"
     # RSS 文章数目
     rss = 10
+    # {{< version 0.2.13 >}} 最近更新文章设置
+    [params.section.recentlyUpdated]
+      enable = false
+      rss = false
+      days = 30
+      maxCount = 10
 
   # {{< version 0.2.0 >}} List (目录或标签) 页面配置
   [params.list]
@@ -420,6 +431,9 @@ hugo
     Liberapay = ""
     Ko-Fi = ""
     BuyMeACoffee = ""
+    Linktree = ""
+    QQ = ""
+    QQGroup = ""
     Email = "xxxx@xxxx.com"
     RSS = true # {{< version 0.2.0 >}}
 
@@ -441,10 +455,30 @@ hugo
     fontawesome = true
     # 是否在文章页面显示原始 Markdown 文档链接
     linkToMarkdown = true
+    # {{< version 0.2.14 >}} 配置文章原始文件的链接
+    linkToSource = false
+    # "https://github.com/user/repo/blob/main/{path}"
+    # {{< version 0.2.13 >}} 配置编辑文章的链接
+    linkToEdit = false
+    # "https://github.com/user/repo/edit/main/{path}"
+    # "https://gitlab.com/user/repo/-/edit/main/{path}"
+    # "https://bitbucket.org/user/repo/src/main/{path}?mode=edit"
+    # {{< version 0.2.14 >}} 配置提交错误的链接
+    linkToReport = false
+    # "https://github.com/user/repo/issues/new?title=[bug]%20{title}&body=|Field|Value|%0A|-|-|%0A|Title|{title}|%0A|Url|{url}|%0A|Filename|https://github.com/user/repo/blob/main/{path}|"
     # {{< version 0.2.4 >}} 是否在 RSS 中显示全文内容
     rssFullText = false
     # {{< version 0.2.11 >}} 页面样式 ("normal", "wide")
     pageStyle = "normal"
+    # {{< version 0.2.13 >}} 是否在文章开头显示系列导航
+    seriesNavigation = true
+    # {{< version 0.2.13 >}} 过时文章提示
+    [params.page.outdatedArticleReminder]
+      enable = true
+      # 如果文章最后更新于 90 天之前，显示提醒
+      reminder = 90
+      # 如果文章最后更新于 180 天之前，显示警告
+      warning = 180
     # {{< version 0.2.0 >}} 目录配置
     [params.page.toc]
       # 是否使用目录
@@ -459,6 +493,10 @@ hugo
       copy = true
       # 默认展开显示的代码行数
       maxShownLines = 10
+    # {{< version 0.2.14 >}} 表格配置
+    [params.page.table]
+      # 是否开启表格排序
+      sort = true
     # {{< version 0.2.0 changed >}} {{< link "https://katex.org/" KaTeX >}} 数学公式
     [params.page.math]
       enable = true
@@ -558,23 +596,20 @@ hugo
         emoji = ""
       # {{< link "https://github.com/xCss/Valine" Waline >}} 评论系统设置
       [params.page.comment.waline]
-        # {{< version 0.2.11 >}}
+        # {{< version 0.2.14 changed >}}
         enable = false
         serverURL = ""
-        placeholder = "Just Go Go."
-        wordLimit = 0
-        avatar = "mp"
-        meta = ["nick", "mail", "link"]
-        pageSize = 10
-        lang = "en"
-        visitor = true
-        highlight = true
-        avatarCDN = ""
-        avatarForce = false
-        emojiCDN = ""
-        emojiMaps = ""
-        requiredFields = []
-        anonymous = false
+        pageview = true
+        comment = true
+        # emoji = ['https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo']
+        # meta = ['nick', 'mail', 'link']
+        # requiredMeta = []
+        # login = 'enable'
+        # wordLimit = 0
+        # pageSize = 10
+        # imageUploader = false
+        # highlighter = false
+        # texRenderer = false
       # {{< link "https://developers.facebook.com/docs/plugins/comments" "Facebook 评论系统" >}}设置
       [params.page.comment.facebook]
         enable = false
@@ -612,6 +647,7 @@ hugo
         region = ""
         path = ""
         visitor = true
+        commentCount = true
       # {{< version 0.2.12 >}} {{< link "https://vssue.js.org/" "Vssue" >}} 评论系统设置
       [params.page.comment.vssue]
         enable = false
@@ -620,18 +656,52 @@ hugo
         repo = ""
         clientId = ""
         clientSecret = ""
+      # {{< version 0.2.13 >}} {{< link "https://remark42.com/" "Remark42" >}} 评论系统设置
+      [params.page.comment.remark42]
+        enable = false
+        host = ""
+        site_id = ""
+        max_shown_comments = 15
+        show_email_subscription = true
+        simple_view = false
+      # {{< version 0.2.13 >}} {{< link "https://giscus.app/" "giscus" >}} 评论系统设置
+      [params.page.comment.giscus]
+        enable = false
+        # owner/repo
+        dataRepo = ""
+        dataRepoId = ""
+        dataCategory = ""
+        dataCategoryId = ""
+        dataMapping = "pathname"
+        dataReactionsEnabled = "1"
+        dataEmitMetadata = "0"
+        dataInputPosition = "bottom"
+        lightTheme = "light"
+        darkTheme = "dark"
+        dataLang = "zh-CN"
     # {{< version 0.2.7 >}} 第三方库配置
     [params.page.library]
       [params.page.library.css]
         # someCSS = "some.css"
+        # {{< version 0.2.14 >}} 更多第三方库配置
+        # [params.page.library.css.someOtherCSS]
+        #   src = "someOther.css"
+        #   defer = true
+        #   attr = "customAttribute"
         # 位于 "assets/"
         # 或者
         # someCSS = "https://cdn.example.com/some.css"
       [params.page.library.js]
-        # someJavascript = "some.js"
+        # someJavaScript = "some.js"
+        # {{< version 0.2.14 >}} 更多第三方库配置
+        # [params.page.library.js.someOtherJavaScript]
+        #   src = "someOther.js"
+        #   defer = false
+        #   async = true
+        #   attr = "customAttribute"
         # 位于 "assets/"
         # 或者
-        # someJavascript = "https://cdn.example.com/some.js"
+        # someJavaScript = "https://cdn.example.com/some.js"
     # {{< version 0.2.10 changed >}} 页面 SEO 配置
     [params.page.seo]
       # 图片 URL
@@ -640,6 +710,13 @@ hugo
       [params.page.seo.publisher]
         name = ""
         logoUrl = ""
+
+  # {{< version 0.2.13 >}} 赞赏配置
+  [params.sponsor]
+    enable = false
+    bio = "如果你觉得这篇文章对你有所帮助，欢迎赞赏~"
+    link = "https://www.buymeacoffee.com" # 你的赞赏页面的地址
+    custom = "" # 自定义 HTML 
 
   # {{< version 0.2.5 >}} TypeIt 配置
   [params.typeit]
@@ -659,6 +736,8 @@ hugo
     yandex = ""
     pinterest = ""
     baidu = ""
+    so = "" # 360 search
+    sogou = ""
 
   # {{< version 0.2.10 >}} 网站 SEO 配置
   [params.seo]
@@ -680,6 +759,21 @@ hugo
       id = ""
       # 自行托管追踪器时的主机路径
       server = ""
+    # {{< version 0.2.13 >}} Baidu Analytics
+    [params.analytics.baidu]
+      id = ""
+    # {{< version 0.2.13 >}} Umami Analytics
+    [params.analytics.umami]
+      data_website_id = ""
+      src = ""
+      data_domains = ""
+    # {{< version 0.2.13 >}} Plausible Analytics
+    [params.analytics.plausible]
+      data_domain = ""
+      src = ""
+    # {{< version 0.2.14 >}} Cloudflare Analytics
+    [params.analytics.cloudflare]
+      token = ""
 
   # {{< version 0.2.7 >}} Cookie 许可配置
   [params.cookieconsent]
@@ -740,6 +834,8 @@ hugo
   name = "xxxx"
   email = ""
   link = ""
+  avatar = ""
+  gravatarEmail = ""
 
 # 网站地图配置
 [sitemap]
@@ -866,7 +962,7 @@ series = "series"
 
 {{< image src="complete-configuration-preview.zh-cn.webp" caption="完整配置下的预览" width="2450" height="1562" >}}
 
-### 3.2 网站图标, 浏览器配置, 网站清单
+### 网站图标, 浏览器配置, 网站清单
 
 强烈建议你把:
 
@@ -881,7 +977,7 @@ series = "series"
 
 可以自定义 `browserconfig.xml` 和 `site.webmanifest` 文件来设置 theme-color 和 background-color.
 
-### 3.3 自定义样式
+### 自定义样式
 
 {{< version 0.2.8 changed >}}
 
@@ -904,13 +1000,13 @@ $code-font-family: Fira Mono, Source Code Pro, Menlo, Consolas, Monaco, monospac
 
 在 `assets/css/_custom.scss` 中, 你可以添加一些 CSS 样式代码以自定义样式.
 
-## 4 多语言和 i18n
+## 多语言和 i18n
 
 **DoIt** 主题完全兼容 Hugo 的多语言模式, 并且支持在网页上切换语言.
 
 {{< image src="language-switch.gif" caption="语言切换" width="770" height="226" >}}
 
-### 4.1 兼容性 {#language-compatibility}
+### 兼容性 {#language-compatibility}
 
 {{< version 0.2.10 changed >}}
 
@@ -929,7 +1025,7 @@ $code-font-family: Fira Mono, Source Code Pro, Menlo, Consolas, Monaco, monospac
 | 罗马尼亚语 | `ro` | `ro` | :(far fa-square fa-fw): | :(far fa-check-square fa-fw): |
 | 越南语 | `vi` | `vi` | :(far fa-square fa-fw): | :(far fa-check-square fa-fw): |
 
-### 4.2 基本配置
+### 基本配置
 
 学习了 [Hugo如何处理多语言网站](https://gohugo.io/content-management/multilingual) 之后, 请在 [站点配置](#site-configuration) 中定义你的网站语言.
 
@@ -1019,7 +1115,7 @@ defaultContentLanguage = "zh-cn"
 也可以使用 [文章前置参数](https://gohugo.io/content-management/multilingual#translate-your-content) 来翻译网址.
 {{< /admonition >}}
 
-### 4.3 修改默认的翻译字符串
+### 修改默认的翻译字符串
 
 翻译字符串用于在主题中使用的常见默认值.
 目前提供[一些语言](#language-compatibility)的翻译, 但你可能自定义其他语言或覆盖默认值.
@@ -1028,13 +1124,13 @@ defaultContentLanguage = "zh-cn"
 
 另外, 由于你的翻译可能会帮助到其他人, 请花点时间通过 [:(fas fa-code-branch fa-fw): 创建一个 PR](https://github.com/HEIGE-PCloud/DoIt/pulls) 来贡献主题翻译, 谢谢!
 
-## 5 搜索
+## 搜索
 
 {{< version 0.2.0 >}}
 
 基于 [Lunr.js](https://lunrjs.com/) 或 [algolia](https://www.algolia.com/), **DoIt** 主题支持搜索功能.
 
-### 5.1 输出配置
+### 输出配置
 
 为了生成搜索功能所需要的 `index.json`, 请在你的 [网站配置](#site-configuration) 中添加 `JSON` 输出文件类型到 `outputs` 部分的 `home` 字段中.
 
@@ -1043,7 +1139,7 @@ defaultContentLanguage = "zh-cn"
   home = ["HTML", "RSS", "JSON"]
 ```
 
-### 5.2 搜索配置
+### 搜索配置
 
 基于 Hugo 生成的 `index.json` 文件, 你可以激活搜索功能.
 

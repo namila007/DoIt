@@ -24,6 +24,12 @@ You can add this repo as a submodule of your site directory.
 git submodule add https://github.com/HEIGE-PCloud/DoIt.git themes/DoIt
 ```
 
+And later you can update the submodule in your site directory to the latest commit using this command:
+
+```bash
+git submodule update --remote --merge
+```
+
 Alternatively, you can download the [latest release .zip file](https://github.com/HEIGE-PCloud/DoIt/releases) of the theme and extract it in the themes directory. (Not recommended, the repo is being updated frequently so the releases may out of date.)
 
 Next, go to the `config.toml` and change the default theme to `DoIt`.
@@ -83,6 +89,9 @@ the DoIt theme may be more suitable for you.
 * Optimized SEO performance with a correct **SEO SCHEMA** based on JSON-LD
 * **[Google Analytics](https://analytics.google.com/analytics)** supported
 * **[Fathom Analytics](https://usefathom.com/)** supported
+* **[Baidu Analytics](https://tongji.baidu.com/)** supported
+* **[Umami Analytics](https://umami.is/)** supported
+* **[Plausible Analytics](https://plausible.io/)** supported
 * Search engine **verification** supported (Google, Bind, Yandex and Baidu)
 * **CDN** for third-party libraries supported
 * Automatically converted images with **Lazy Load** by [lazysizes](https://github.com/aFarkas/lazysizes)
@@ -115,6 +124,8 @@ the DoIt theme may be more suitable for you.
 * **Utterances** comment system supported by [Utterances](https://utteranc.es/)
 * **Twikoo** comment system supported by [Twikoo](https://twikoo.js.org/)
 * **Vssue** comment system supported by [Vssue](https://vssue.js.org/)
+* **Remark42** comment system supported by[Remark42](https://remark42.com/)
+* **giscus** comment system supported by [giscus](https://giscus.app/)
 
 ### Extended Features
 
@@ -209,6 +220,7 @@ Thanks to the authors of following resources included in the theme:
 * [Waline](https://waline.js.org/)
 * [Twikoo](https://twikoo.js.org/)
 * [Vssue](https://vssue.js.org/)
+* [Remark42](https://remark42.com/)
 * [cookieconsent](https://github.com/osano/cookieconsent)
 * [Pjax](https://github.com/PaperStrike/Pjax)
 * [Topbar](https://github.com/buunguyen/topbar)
@@ -216,11 +228,3 @@ Thanks to the authors of following resources included in the theme:
 ## Author
 
 [PCloud](https://github.com/HEIGE-PCloud)
-
-## Sponsor
-
-If you enjoy the theme, please consider buying me a coffee ☕️.
-
-https://www.buymeacoffee.com/PCloud
-
-Thanks! ❤️

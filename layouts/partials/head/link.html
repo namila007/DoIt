@@ -44,21 +44,18 @@
 
 {{- /* Font Awesome */ -}}
 {{- $source := $cdn.fontawesomeFreeCSS | default "lib/fontawesome-free/all.min.css" -}}
-{{- $style := dict "Source" $source "Fingerprint" $fingerprint -}}
-{{- partial "plugin/defer-style.html" $style -}}
+{{- $style := dict "Source" $source "Fingerprint" $fingerprint "Defer" true -}}
+{{- partial "plugin/style.html" $style -}}
 
 {{- /* Animate.css */ -}}
 {{- $source := $cdn.animateCSS | default "lib/animate/animate.min.css" -}}
-{{- $style := dict "Source" $source "Fingerprint" $fingerprint -}}
-{{- partial "plugin/defer-style.html" $style -}}
+{{- $style := dict "Source" $source "Fingerprint" $fingerprint "Defer" true -}}
+{{- partial "plugin/style.html" $style -}}
 
-{{- if eq .Site.Params.enablePWA true -}}
-    {{- if eq hugo.Environment "production" -}}
-        {{- /* sw.min.js */ -}}
-        {{- $sw := resources.Get "sw.min.js" -}}
-        {{- $_ := $sw.Permalink -}}
-        {{- /* sw.min.js.map */ -}}
-        {{- $sw := resources.Get "sw.min.js.map" -}}
-        {{- $_ := $sw.Permalink -}}
-    {{- end -}}
+{{- if .Site.Params.enablePWA | and hugo.IsProduction -}}
+    {{ $options := dict }}
+    {{ $options = dict "targetPath" "sw.min.js" | merge $options }}
+    {{ $options = dict "minify" true | merge $options }}
+    {{ $js := resources.Get "js/sw.js" | js.Build $options }}
+    {{ $_ := $js.RelPermalink }}
 {{- end -}}
